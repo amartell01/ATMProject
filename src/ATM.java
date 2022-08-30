@@ -12,7 +12,7 @@ public class ATM {
 		accounts.put(accountNumber, null);
 	}
 	
-	public void openAccount(int accountNumber, double depositAmount) {
+	public void openAccount(int accountNumber, double balance) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		accounts.put(accountNumber, balance);
@@ -25,15 +25,25 @@ public class ATM {
 		}
 	}
 	
-	//returns a double the exact account value of all desposits into the account
+	//returns a double the exact account value of all deposits into the account
 	//returns 0.0 if there is no valid account
 	public double checkBalance (int accountNumber) {
-		return 0.0;
+		if (accounts.containsKey(accountNumber)) {
+			return balance; 
+		} else {
+			return 0.0; 
+		}
 	}
 	
 	//returns true/false depending on success or failure of deposit
 	public boolean depositMoney (int accountNumber, double depositAmt) {
-		return true; 
+		if (depositAmt > 0) {
+			balance += depositAmt;
+			return true; 
+		} else {
+			return false;
+		}
+		
 	}
 	
 	//returns true/false depending on success or failure of deposit
