@@ -40,7 +40,13 @@ public class ATM {
 		if (depositAmt > 0 && accounts.get(accountNumber) != null) {
 			
 			double current = accounts.get(accountNumber);
-			accounts.put(accountNumber, current + depositAmt);			
+			
+			current += depositAmt;
+			current = Math.round(current * 100);
+			current = current / 100; 
+			accounts.put(accountNumber, current);
+			
+			//accounts.put(accountNumber, current + depositAmt);			
 			
 			return true; 
 		} else {
@@ -58,7 +64,8 @@ public class ATM {
 		} else {
 			double current = accounts.get(accountNumber);
 			current -= withdrawAmt;
-			current = Math.round(current);
+			current = Math.round(current * 100);
+			current = current / 100; 
 			accounts.put(accountNumber, current); 
 			return true; 
 		}
