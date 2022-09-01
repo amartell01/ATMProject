@@ -37,15 +37,10 @@ public class ATM {
 	
 	//returns true/false depending on success or failure of deposit
 	public boolean depositMoney (int accountNumber, double depositAmt) {
-		if (depositAmt > 0) {
-			//double balance = accounts.get(accountNumber);
-			//balance += depositAmt;
+		if (depositAmt > 0 && accounts.get(accountNumber) != null) {
 			
-			double add = accounts.get(accountNumber);
-			accounts.put(accountNumber, add + depositAmt);
-		
-			
-			
+			double current = accounts.get(accountNumber);
+			accounts.put(accountNumber, current + depositAmt);			
 			
 			return true; 
 		} else {
@@ -56,12 +51,15 @@ public class ATM {
 	
 	//returns true/false depending on success or failure of deposit
 	public boolean withdrawMoney (int accountNumber, double withdrawAmt) {
-		double balance = accounts.get(accountNumber);
+		
 	
-		if (withdrawAmt > balance) {
+		if (accounts.get(accountNumber) == null || withdrawAmt > accounts.get(accountNumber) || withdrawAmt < 0) {
 			return false; 
 		} else {
-			balance -= withdrawAmt; 
+			double current = accounts.get(accountNumber);
+			current -= withdrawAmt;
+			current = Math.round(current);
+			accounts.put(accountNumber, current); 
 			return true; 
 		}
 	}
