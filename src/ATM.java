@@ -3,18 +3,15 @@ import java.util.*;
 
 public class ATM {
 	
-	//private int accountNumber; 
-//	private double balance;
+
 	private HashMap<Integer, Double> accounts = new HashMap<Integer, Double>();
 	
 	public void openAccount (int accountNumber) {
-		//this.accountNumber = accountNumber;
 		accounts.put(accountNumber, 0.0);
 	}
 	
 	public void openAccount(int accountNumber, double balance) {
-		//this.accountNumber = accountNumber;
-		//this.balance = balance;
+
 		accounts.put(accountNumber, balance);
 	}
 	
